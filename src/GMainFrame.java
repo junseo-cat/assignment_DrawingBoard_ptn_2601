@@ -22,11 +22,11 @@ public class GMainFrame extends JFrame {
         this.menuBar = new GMenuBar();	//자식이름과 생성 클래스를 바인딩(연결)
         this.setJMenuBar(menuBar);	//등록
 
-        this.toolBar = new GToolBar();
-        //this.add(toolBar, BorderLayout.NORTH);
-
         this.drawingPanel =new GDrawingPanel();
         //this.add(drawingPanel, BorderLayout.CENTER);
+
+        this.toolBar = new GToolBar(drawingPanel);  //드로잉 패널 넘겨줌
+        //this.add(toolBar, BorderLayout.NORTH);
 
         // BoxLayout 설정 / 방향 지정 없이 등록된 순서대로 추가
         this.add(toolBar);
