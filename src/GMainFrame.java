@@ -1,37 +1,32 @@
-import javax.swing.*;
-import java.awt.*;
+
+import java.awt.BorderLayout;
+
+import javax.swing.JFrame;
 
 public class GMainFrame extends JFrame {
-    //자식 이름 짖기  components
+    // components
     private GMenuBar menuBar;
-    private GToolBar toolBar;
+    private GShapeToolBar toolBar;
     private GDrawingPanel drawingPanel;
+    // associations
+    // ...
 
     public GMainFrame() {
-        //속성 세팅 (형용상) JFrame에서 제공한
-        super("GMainFrame"); // 창 title
-        this.setSize(800, 600); //size
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //창 닫기 close function
+        // attributes
+        this.setLocation(200, 200);
+        this.setSize(600, 400);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        //레이아웃
-        //this.setLayout( new BorderLayout());
-        // 기존 BorderLayout 대신 BoxLayout 설정 (Y_AXIS는 위에서 아래로 쌓기)
-        this.getContentPane().setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
+        // components
+        this.menuBar = new GMenuBar();
+        this.setJMenuBar(menuBar);
 
-        //자식 설정 creat aggregation
-        this.menuBar = new GMenuBar();	//자식이름과 생성 클래스를 바인딩(연결)
-        this.setJMenuBar(menuBar);	//등록
+        this.setLayout(new BorderLayout());
 
-        this.drawingPanel =new GDrawingPanel();
-        //this.add(drawingPanel, BorderLayout.CENTER);
+        this.toolBar = new GShapeToolBar();
+        this.add(toolBar, BorderLayout.NORTH);
 
-        this.toolBar = new GToolBar(drawingPanel);  //드로잉 패널 넘겨줌
-        //this.add(toolBar, BorderLayout.NORTH);
-
-        // BoxLayout 설정 / 방향 지정 없이 등록된 순서대로 추가
-        this.add(toolBar);
-        this.add(drawingPanel);
+        this.drawingPanel = new GDrawingPanel();
+        this.add(drawingPanel, BorderLayout.CENTER);
     }
-
-    //member function / methods 동사
 }
